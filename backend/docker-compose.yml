@@ -1,0 +1,11 @@
+version: '3'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+services:
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: luizTarefas
+      POSTGRES_PASSWORD: tarefas1234
+      POSTGRES_DB: tarefas
