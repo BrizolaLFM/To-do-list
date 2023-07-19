@@ -1,9 +1,14 @@
 const connection = require('../database/connection.js');
 
 const getAllTasksFromDb = async () => {
+    const tasks = []
     const retornoDb = await connection.query('SELECT * FROM tarefas');
-    return retornoDb;
-}
+    retornoDb.rows.forEach(row => {
+        tasks.push(row)
+    });
+
+    return tasks
+};
 
 module.exports = {getAllTasksFromDb};
 

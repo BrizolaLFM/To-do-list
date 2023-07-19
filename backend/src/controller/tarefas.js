@@ -1,9 +1,9 @@
 const modelTarefas = require('../models/tarefas.js');
 
-const controllerTarefa = (req, res)=>{
+const controllerTarefa = async (req, res)=>{
     console.log(req.body)
-
-    return res.status(200).json(modelTarefas.getAll());
+    const tarefas = await modelTarefas.getAll()
+    return res.status(200).json(tarefas);
 }
 
 module.exports = controllerTarefa;

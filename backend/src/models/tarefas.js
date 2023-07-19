@@ -1,6 +1,6 @@
 const tarefasRepository = require('../repository/tarefas.js')
 
-const getAll = () => {
+const getAll = async () => {
     return tarefasRepository.getAllTasksFromDb()
 };
 
