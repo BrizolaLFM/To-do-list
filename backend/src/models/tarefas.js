@@ -1,7 +1,15 @@
 const tarefasRepository = require('../repository/tarefas.js')
 
 const getAll = async () => {
-    return tarefasRepository.getAllTasksFromDb()
+    return tarefasRepository.getAllTasksFromDb();
 };
 
-module.exports = { getAll };
+const criaçãoTask = async (task) => {
+    return tarefasRepository.criaTarefa(task);
+};
+
+
+module.exports = {
+    getAll,
+    criaçãoTask
+};
