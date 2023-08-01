@@ -11,7 +11,14 @@ const criaTarefa = async (req, res)=>{
     return res.status(201).json(createdTask);
 };
 
+const deletaTarefa = async (req, res)=>{
+    const deleteTask = await modelTarefas.DeletarTarefa();
+    return res.status(204).json();
+};
+
+
 module.exports = {
     controllerTarefa,
-    criaTarefa
+    criaTarefa,
+    deletaTarefa
 };

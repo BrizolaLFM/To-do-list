@@ -8,8 +8,12 @@ const criaçãoTask = async (task) => {
     return tarefasRepository.criaTarefa(task);
 };
 
+const DeletarTarefa = async (id) => {
+    return tarefasRepository.deletaTarefa(id);
+};
 
 module.exports = {
     getAll,
-    criaçãoTask
+    criaçãoTask,
+    DeletarTarefa
 };

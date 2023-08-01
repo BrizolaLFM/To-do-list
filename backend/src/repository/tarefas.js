@@ -33,9 +33,15 @@ return tarefaCriada;
 };
 
 
+const deletaTarefa = async (id) => {
+    const removeTarefa = await connection.query('DELETE FROM tarefas WHERE id = ?', [id]);
+    };
+
+
 module.exports = {
     getAllTasksFromDb,
-    criaTarefa
+    criaTarefa,
+    deletaTarefa
 };
 
 
