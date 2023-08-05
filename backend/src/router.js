@@ -8,7 +8,7 @@ router.get('/tarefas', controllerTarefa.controllerTarefa);
 
 router.post('/tarefas', tarefaMiddleware.validatebody, controllerTarefa.criaTarefa);
 
-router.post('/tarefas', controllerTarefa.deletaTarefa);
+router.delete('/tarefas/:id', controllerTarefa.deletaTarefa);
 
 
 module.exports = router;

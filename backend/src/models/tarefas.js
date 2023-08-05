@@ -9,7 +9,7 @@ const criaçãoTask = async (task) => {
 };
 
 const DeletarTarefa = async (id) => {
-    return tarefasRepository.deletaTarefa(id);
+    return await tarefasRepository.deletaTarefa(id);
 };
 
 module.exports = {

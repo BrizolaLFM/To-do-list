@@ -12,7 +12,8 @@ const criaTarefa = async (req, res)=>{
 };
 
 const deletaTarefa = async (req, res)=>{
-    const deleteTask = await modelTarefas.DeletarTarefa();
+    const {id} = req.params;
+    await modelTarefas.DeletarTarefa(id);
     return res.status(204).json();
 };
 

@@ -18,7 +18,6 @@ const getAllTasksFromDb = async () => {
 const criaTarefa = async (task) => {
 const { title } = task;
  const date = DateTime.now().setLocale("pt-br");
-
 const comandQuery = `INSERT INTO tarefas(title, status, created_at, updated_at) VALUES ('${title}', 'Pendente', '${date}', '${date}')`;
 //Essa const foi criada apenas para a linha da const tarefaCriada não ficar tão extensa
 
@@ -28,14 +27,16 @@ const tarefaCriada = await connection.query(comandQuery);
    {Ex: 1 vai salvar title; 2 vai salvar status...}; //Bom os `números` que eu citei antes foram alterados e agora passararam
 a ser os valores que eu quero inserir, como {title, status, created_at, ...} por exemplo;
 */
-
 return tarefaCriada;
 };
 
 
 const deletaTarefa = async (id) => {
-    const removeTarefa = await connection.query('DELETE FROM tarefas WHERE id = ?', [id]);
-    };
+    console.log('ID a ser deletado:', id);
+    const numId = Number(id);
+    const removeTarefa = await connection.query(`DELETE FROM tarefas WHERE id = '${numId}'`);
+    return removeTarefa;
+};
 
 
 module.exports = {
