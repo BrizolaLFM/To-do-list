@@ -31,6 +31,7 @@ return tarefaCriada;
 };
 
 
+
 const deletaTarefa = async (id) => {
     console.log('ID a ser deletado:', id);
     const numId = Number(id);
