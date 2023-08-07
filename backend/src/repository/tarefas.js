@@ -1,4 +1,7 @@
+const { json } = require('express');
 const connection = require('../database/connection.js');
+const { DateTime } = require("luxon");
+
 
 const getAllTasksFromDb = async () => {
     const tasks = []
@@ -10,7 +13,52 @@ const getAllTasksFromDb = async () => {
     return tasks
 };
 
-module.exports = {getAllTasksFromDb};
+
+
+const criaTarefa = async (task) => {
+const { title } = task;
+ const date = DateTime.now().setLocale("pt-br");
+const comandQuery = `INSERT INTO tarefas(title, status, created_at, updated_at) VALUES ('${title}', 'Pendente', '${date}', '${date}')`;
+//Essa const foi criada apenas para a linha da const tarefaCriada não ficar tão extensa
+
+const tarefaCriada = await connection.query(comandQuery);
+/* Na constante "comandQuery" os ? indicam o valor de cada item de `tarefas`;
+   Os números colocados entre [] na const tarefaCriada "[1, 2, 3, 4]", significa que cada número vai salvar uma coluna do DB-
+   {Ex: 1 vai salvar title; 2 vai salvar status...}; //Bom os `números` que eu citei antes foram alterados e agora passararam
+a ser os valores que eu quero inserir, como {title, status, created_at, ...} por exemplo;
+*/
+return tarefaCriada;
+};
+
+
+
+const deletaTarefa = async (id) => {
+    console.log('ID a ser deletado:', id);
+    const numId = Number(id);
+    const removeTarefa = await connection.query(`DELETE FROM tarefas WHERE id = '${numId}'`);
+    return removeTarefa;
+};
+
+
+
+const atualizaTask = async (id, task) => {
+    const { title, status } = task;
+    const numId = Number(id);
+    const comandQuery = (`UPDATE tarefas SET title = '${title}', status = '${status}' WHERE id = '${numId}'`);
+    const taskAtualizada = await connection.query(comandQuery);
+    return taskAtualizada;
+};
+
+
+module.exports = {
+    getAllTasksFromDb,
+    criaTarefa,
+    deletaTarefa,
+    atualizaTask
+};
+
+
+
 
 /*
 
@@ -60,3 +108,5 @@ IGUAL ADULTO=
     }
         
 */
+
+//O método Date.now() retorna o número de milisegundos decorridos desde de 1 de janeiro de 1970 00:00:00 UTC.
