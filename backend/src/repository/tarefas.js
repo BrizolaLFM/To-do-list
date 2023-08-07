@@ -40,10 +40,21 @@ const deletaTarefa = async (id) => {
 };
 
 
+
+const atualizaTask = async (id, task) => {
+    const { title, status } = task;
+    const numId = Number(id);
+    const comandQuery = (`UPDATE tarefas SET title = '${title}', status = '${status}' WHERE id = '${numId}'`);
+    const taskAtualizada = await connection.query(comandQuery);
+    return taskAtualizada;
+};
+
+
 module.exports = {
     getAllTasksFromDb,
     criaTarefa,
-    deletaTarefa
+    deletaTarefa,
+    atualizaTask
 };
 
 
