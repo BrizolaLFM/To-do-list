@@ -17,8 +17,9 @@ const getAllTasksFromDb = async () => {
 
 const criaTarefa = async (task) => {
 const { title } = task;
- const date = DateTime.now().setLocale("pt-br");
-const comandQuery = `INSERT INTO tarefas(title, status, created_at, updated_at) VALUES ('${title}', 'Pendente', '${date}', '${date}')`;
+ const date = DateTime.now().setZone("America/Sao_Paulo");
+ const dataFormat = date.toFormat('dd/MM/yyyy HH:mm');
+const comandQuery = `INSERT INTO tarefas(title, status, created_at, updated_at) VALUES ('${title}', 'Pendente', '${dataFormat}', '${dataFormat}')`;
 //Essa const foi criada apenas para a linha da const tarefaCriada não ficar tão extensa
 
 const tarefaCriada = await connection.query(comandQuery);
